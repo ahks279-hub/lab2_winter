@@ -21,48 +21,40 @@ int main()
 
     // Calling the functions to perform the tasks
     printf("Even numbers between %.2lf and %.2lf:\n", n1, n2);
-    even_numbers(n1, n2);
+    even_numbers((int)n1, (int)n2);
 
-    int sumOdd = sum_oddnum(n1, n2);
+    int sumOdd = sum_oddnum((int)n1, (int)n2);
     printf("Sum of odd numbers between %.2lf and %.2lf: %d\n", n1, n2, sumOdd);
 
-    int sumSquare = sum_squareofodd(n1, n2);
+    int sumSquare = sum_squareofodd((int)n1, (int)n2);
     printf("Sum of the squares of odd numbers between %.2lf and %.2lf: %d\n", n1, n2, sumSquare);
 
     return 0;
 }
 
-// Function to output all even numbers between n1 and n2
+// Function to print all even numbers between n1 and n2 using recursion
 void even_numbers(double n1, double n2) {
-    // Loop through the range from n1 to n2 and print even numbers
-    for (int i = (int)n1; i <= (int)n2; i++) {
-        if (i % 2 == 0) {
-            printf("%d ", i);
-        }
+    if (n1 > n2) return; // Base case: end of range
+    if ((int)n1 % 2 == 0) {
+        printf("%d ", (int)n1);
     }
-    printf("\n");
+    even_numbers(n1 + 1, n2); // Recursive call
 }
 
-// Function to output the sum of all odd numbers between n1 and n2
+// Function to calculate the sum of odd numbers between n1 and n2 using recursion
 int sum_oddnum(double n1, double n2) {
-    int sum = 0;
-    // Loop through the range and sum odd numbers
-    for (int i = (int)n1; i <= (int)n2; i++) {
-        if (i % 2 != 0) {
-            sum += i;
-        }
+    if (n1 > n2) return 0; // Base case: end of range
+    if ((int)n1 % 2 != 0) {
+        return (int)n1 + sum_oddnum(n1 + 1, n2); // Add current odd number
     }
-    return sum;
+    return sum_oddnum(n1 + 1, n2); // Skip even number
 }
 
-// Function to output the sum of the squares of odd numbers between n1 and n2
+// Function to calculate the sum of squares of odd numbers between n1 and n2 using recursion
 int sum_squareofodd(double n1, double n2) {
-    int sum = 0;
-    // Loop through the range and sum the squares of odd numbers
-    for (int i = (int)n1; i <= (int)n2; i++) {
-        if (i % 2 != 0) {
-            sum += i * i;
-        }
+    if (n1 > n2) return 0; // Base case: end of range
+    if ((int)n1 % 2 != 0) {
+        return ((int)n1 * (int)n1) + sum_squareofodd(n1 + 1, n2); // Add square of odd number
     }
-    return sum;
+    return sum_squareofodd(n1 + 1, n2); // Skip even number
 }
