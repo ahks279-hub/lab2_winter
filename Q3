@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+// Prototypes
+void even_numbers(double n1, double n2);
+int sum_oddnum(double n1, double n2);
+int sum_squareofodd(double n1, double n2);
+
+int main()
+{
+    double n1, n2;
+
+    // Asking the user for input
+    printf("Enter two numbers (n1 must be less than n2): ");
+    scanf("%lf %lf", &n1, &n2);
+
+    // Ensure n1 is less than n2
+    if (n1 >= n2) {
+        printf("Error: n1 must be less than n2.\n");
+        return 1;
+    }
+
+    // Calling the functions to perform the tasks
+    printf("Even numbers between %.2lf and %.2lf:\n", n1, n2);
+    even_numbers(n1, n2);
+
+    int sumOdd = sum_oddnum(n1, n2);
+    printf("Sum of odd numbers between %.2lf and %.2lf: %d\n", n1, n2, sumOdd);
+
+    int sumSquare = sum_squareofodd(n1, n2);
+    printf("Sum of the squares of odd numbers between %.2lf and %.2lf: %d\n", n1, n2, sumSquare);
+
+    return 0;
+}
+
+// Function to output all even numbers between n1 and n2
+void even_numbers(double n1, double n2) {
+    // Loop through the range from n1 to n2 and print even numbers
+    for (int i = (int)n1; i <= (int)n2; i++) {
+        if (i % 2 == 0) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+}
+
+// Function to output the sum of all odd numbers between n1 and n2
+int sum_oddnum(double n1, double n2) {
+    int sum = 0;
+    // Loop through the range and sum odd numbers
+    for (int i = (int)n1; i <= (int)n2; i++) {
+        if (i % 2 != 0) {
+            sum += i;
+        }
+    }
+    return sum;
+}
+
+// Function to output the sum of the squares of odd numbers between n1 and n2
+int sum_squareofodd(double n1, double n2) {
+    int sum = 0;
+    // Loop through the range and sum the squares of odd numbers
+    for (int i = (int)n1; i <= (int)n2; i++) {
+        if (i % 2 != 0) {
+            sum += i * i;
+        }
+    }
+    return sum;
+}
