@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+//prototype
+int calculateArea ();
+
+int main()
+{
+    int mul;
+  mul=calculateArea();
+  
+  printf(" The area is %d", mul);
+  
+  return 0;
+}
+
+//Definition for function
+  
+int calculateArea (){
+    int L, W;
+  printf("Enter 2 numbers: ");
+  scanf("%d %d",&L ,&W);
+  
+    int area;
+     area= L*W;
+    return area;
+}
